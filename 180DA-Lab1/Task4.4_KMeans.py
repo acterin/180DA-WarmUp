@@ -57,7 +57,7 @@ while (True):
     # Account for border thickness
     rect1 = frame[(y_start + 2):(y_end - 2), (x_start + 2):(x_end - 2)]  
 
-    # Codelikeagirl's source code
+    # Codelikeagirl
     img = cv2.cvtColor(rect1, cv2.COLOR_BGR2RGB)
     img = img.reshape((img.shape[0] * img.shape[1],3))  #represent as row*column,channel number
     clt = KMeans(n_clusters=3) #cluster number
