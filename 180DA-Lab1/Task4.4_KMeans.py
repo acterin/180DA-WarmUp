@@ -1,4 +1,4 @@
-# Code reference: https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097 with adaptation 
+# Code reference: https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097 
 
 import cv2
 import numpy as np
