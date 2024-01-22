@@ -1,4 +1,4 @@
-# Code reference: https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097 
+# Reference: https://code.likeagirl.io/finding-dominant-colour-on-an-image-b4e075f98097 
 
 import cv2
 import numpy as np
@@ -57,7 +57,7 @@ while (True):
     # Account for border thickness
     rect1 = frame[(y_start + 2):(y_end - 2), (x_start + 2):(x_end - 2)]  
 
-    # Codelikeagirl
+    # Codelikeagirl's source code
     img = cv2.cvtColor(rect1, cv2.COLOR_BGR2RGB)
     img = img.reshape((img.shape[0] * img.shape[1],3))  #represent as row*column,channel number
     clt = KMeans(n_clusters=3) #cluster number
@@ -66,7 +66,7 @@ while (True):
     hist = find_histogram(clt)
     bar = plot_colors2(hist, clt.cluster_centers_)
 
-    # # Display the bar... source code freezes up the video stream because it's plt.imshow, not ... 
+    # # Display the bar... source code freezes up the video stream when I use plt._() instead of cv2._()
     # # You must first convert back to BGR to show via cv2.imshow, not plt.imshow.
     ## Also, axis() and show() does NOT exist for in OpenCV 
     # plt.axis("off")
