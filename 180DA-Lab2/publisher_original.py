@@ -1,21 +1,14 @@
 import paho.mqtt.client as mqtt
 import numpy as np
 
-# create a new address
-counter = 0
-publisher_client_id = "joseph_kwon"
-
-
 # 0. define callbacks - functions that run when events happen.
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
     print("Connection returned result: " + str(rc))
-    # Subscribe to the topic after a successful connection
-    client.subscribe("ece180d/jacob/test", qos=1)
 
 # Subscribing in on_connect() means that if we lose the connection and
 # reconnect then subscriptions will be renewed.
-client.subscribe("ece180d/test")
+# client.subscribe("ece180d/test")
 
 # The callback of the client when it disconnects.
 def on_disconnect(client, userdata, rc):
@@ -27,31 +20,34 @@ def on_disconnect(client, userdata, rc):
 # The default message callback.
 # (won't be used if only publishing, but can still exist)
 def on_message(client, userdata, message):
-    global counter
-    received_message = message.payload.decode("utf-8")
-    received_client_id = client._client_id
-    if received_client_id != publisher_client_id:
-        print('Received message on publisher side:', received_message)
-        counter = int(received_message) + 1
-        print('Incrementing and updating counter on publisher side:', counter)
+    print('Received message: "' + str(message.payload) + '" on topic "' +
+        message.topic + '" with QoS ' + str(message.qos))
 
-client = mqtt.Client(client_id=publisher_client_id)
+
+# 1. create a client instance.
+client = mqtt.Client()
+# add additional client options (security, certifications, etc.)
+# many default options should be good to start off.
+# add callbacks to client
 client.on_connect = on_connect
 client.on_disconnect = on_disconnect
 client.on_message = on_message
 
+# 2. connect to a broker using one of the connect*() functions.
+# client.connect_async("test.mosquitto.org")
 client.connect_async('mqtt.eclipseprojects.io')
+
+# 3. call one of the loop*() functions to maintain network traffic flow with the broker.
 client.loop_start()    
 
+# 4. use subscribe() to subscribe to a topic and receive messages.
+
+# 5. use publish() to publish messages to the broker.
+# payload must be a string, bytearray, int, float or None.
 print('Publishing...')
-try:
-    while True:
-        client.publish("ece180d/jacob/test", str(counter), qos=1)
-        print('Publishing:', counter)
-        time.sleep(1)
+for i in range(10):
+    client.publish("ece180d/test", float(np.random.random(1)), qos=1)
 
-except KeyboardInterrupt:
-    pass  # Allow graceful exit on Ctrl+C
-
+# 6. use disconnect() to disconnect from the broker.
 client.loop_stop()
 client.disconnect()
