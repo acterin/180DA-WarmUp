@@ -5,11 +5,10 @@ import paho.mqtt.client as mqtt
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
     print("Connection returned result: " + str(rc))
-
+    client.subscribe("ece180d/test", qos=1)
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("ece180d/test", qos=1)
-
+    
 
 # The callback of the client when it disconnects.
 def on_disconnect(client, userdata, rc):
@@ -41,13 +40,26 @@ client.connect_async('mqtt.eclipseprojects.io')
 
 # 3. call one of the loop*() functions to maintain network traffic flow with the broker.
 client.loop_start()
-# client.loop_forever()
+# Set the maximum number of iterations
+max_iterations = 100
+current_iteration = 0
 
 while True: # perhaps add a stopping condition using some break or something.
-    pass # do your non-blocked other stuff here, like receive IMU data or something.
-# use subscribe() to subscribe to a topic and receive messages.
+    # Your non-blocking code here, e.g., receive IMU data.
 
-# use publish() to publish messages to the broker.
+    # use subscribe() to subscribe to a topic and receive messages.
+    subscribe()
+
+    # use publish() to publish messages to the broker.
+    publish()
+
+    # Increment the iteration counter
+    current_iteration += 1
+
+    # Check for the stopping condition (reached maximum iterations)
+    if current_iteration >= max_iterations:
+        break
+
 
 # use disconnect() to disconnect from the broker.
 client.loop_stop()

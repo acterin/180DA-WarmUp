@@ -5,6 +5,7 @@ import numpy as np
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
     print("Connection returned result: " + str(rc))
+    client.subscribe("ece180d/test")
 
 # Subscribing in on_connect() means that if we lose the connection and
 # reconnect then subscriptions will be renewed.
@@ -23,7 +24,6 @@ def on_message(client, userdata, message):
     print('Received message: "' + str(message.payload) + '" on topic "' +
         message.topic + '" with QoS ' + str(message.qos))
 
-
 # 1. create a client instance.
 client = mqtt.Client()
 # add additional client options (security, certifications, etc.)
@@ -41,6 +41,7 @@ client.connect_async('mqtt.eclipseprojects.io')
 client.loop_start()    
 
 # 4. use subscribe() to subscribe to a topic and receive messages.
+subscribe()
 
 # 5. use publish() to publish messages to the broker.
 # payload must be a string, bytearray, int, float or None.
