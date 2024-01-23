@@ -41,11 +41,12 @@ client.connect_async('mqtt.eclipseprojects.io')
 client.loop_start()    
 
 # 4. use subscribe() to subscribe to a topic and receive messages.
+client.subscribe("ece180d/test")
 
 # 5. use publish() to publish messages to the broker.
 # payload must be a string, bytearray, int, float or None.
 print('Publishing...')
-for i in range(10):
+for i in range(20):
     client.publish("ece180d/test", float(np.random.random(1)), qos=1)
 
 # 6. use disconnect() to disconnect from the broker.
