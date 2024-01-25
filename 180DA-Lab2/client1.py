@@ -1,5 +1,8 @@
+# client 1: publisher
 import paho.mqtt.client as mqtt
 import time
+
+count = 0;
 
 # 0. define callbacks - functions that run when events happen.
 # The callback for when the client receives a CONNACK response from the server.
@@ -19,13 +22,15 @@ def on_disconnect(client, userdata, rc):
 # The default message callback
 # (you can create separate callbacks per subscribed topic)
 def on_message(client, userdata, message):
-    time.sleep(1)
-
+    msg_payload = int(message.payload.decode())
+    global count
     # Upon receiving the message, send it back to the publisher with increment on the payload
-    if int(message.payload) < 10:
-        client.publish("ece180d/test", int(message.payload) + 1, qos=1)
-    print('Received message: "' + str(message.payload) + '" on topic "' +
-        message.topic + '" with QoS ' + str(message.qos))
+    # if (msg_payload < 10):
+    print('Received message: "' + str(msg_payload) + '" on topic "' + 
+            message.topic + '" with QoS ' + str(message.qos))
+    count += 1 
+    print("Published Counter: ", count)
+
 
 # 1. create a client instance.
 client = mqtt.Client()
@@ -45,31 +50,12 @@ client.connect_async('mqtt.eclipseprojects.io')
 # 3. call one of the loop*() functions to maintain network traffic flow with the broker.
 client.loop_start()
 # client.loop_forever()
-client.publish("ece180d/test", 0, qos=1)
 
-# current_iteration = 0
-# max_iterations = 20
-
-# while True: # perhaps add a stopping condition using some break or something.
-#     # Your non-blocking code here, e.g., receive IMU data.
-
-#     # use publish() to publish messages to the broker.
-#     client.publish("ece180d/test", current_iteration, qos=1)
-#     time.sleep(1)
-
-#     # Increment the iteration counter
-#     current_iteration += 1
-
-#     # Check for the stopping condition (reached maximum iterations)
-#     if current_iteration >= max_iterations:
-#         break
 
 while True: # perhaps add a stopping condition using some break or something.
+    client.publish("ece180d/test", int (count), qos=1)
+    time.sleep(1)
     pass # do your non-blocked other stuff here, like receive IMU data or something.
-
-# use publish() to publish messages to the broker. 
-# located in def on_message()
-
 # use disconnect() to disconnect from the broker.
 client.loop_stop()
 client.disconnect()

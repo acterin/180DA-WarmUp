@@ -1,0 +1,35 @@
+4.1: Intro to MQTT
+Files: (1) client1.py (2) client2.py (both are modified from publisher_original.py and subscriber_original.py)
+Q1: Consider how to use MQTT for the project. Based on your experiences, what is made possible using MQTT? 
+A: Using MQTT, communication is made possible between at least 2 communication channels. 
+Q2: What seems fairly difficult using MQTT? 
+A: MQTT seems to only be able to send strings. The payload also needs to be decoded with each iteration to make it human-readable. 
+Q3: If you were to use MQTT, what would be a reasonable communications lag time be? 
+A: A reasonable communication lag time might be more than 1 second if MQTT is implemented to a game with speech recognition   
+Q4: Would you prefer to use a different method of transmitting data?
+A: So far, I don't know any other method of transmitting data. This is the first communication protocol I learned to code. 
+There are other alternatives such as AMQP, CoAP, XMPP.
+MQTT is great because it is efficient, lightweight, and reliable.
+If needed, additional security can be implemented such as usernames and passwords, but that is beyond the scope of this tutorial.
+
+4.2: Intro to Speech recognition
+Files: (1) speech.py (modified from guess-the-word.py) 
+(a) What can you do with your given speech program in the project?
+A: The speech program can recognize simple words such as apple, banana, and hippopotamus. 
+The speech recognition program is much faster than I thought it would be. 
+(b) How complex do you want your speech recognition to be? How complex can you reasonably expect
+your speech recognition to be?
+A: The speed recognition seems to be at a reasonable level at the moment. 
+I don't expect the speech recognition to be much more complicated than how it is now.
+If I need it to be complex, I can up the complexity as needed.
+(c) What level of speech accuracy do you need? In other words, how quickly do you need an accurate
+recognition? Does a missed recognition hurt the progress of the game?
+A: The speech accuracy is pretty accurate when it comes to phrases, but not when it comes to individual letters. 
+It also got the word "found" wrong. It thought found was "clown", but that could also be due to the high level of noise in hte 180DA Lab.
+A missed recognition would hurt the progress of the game especially if there is a time component. 
+If not, I imagine that a missed word would not hurt the progress of the game so much. 
+I will try to choose words that have a low error rate so that I don't have to up the complexity  of the speech recognition program so much.
+(d) Do you need specific hardware, specific conditions, etc. to have a reasonable confidence that it
+works well enough?
+A: We should have an environment that is as silent as possible other than the user to prevent interference. 
+
