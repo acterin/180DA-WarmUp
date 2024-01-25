@@ -1,5 +1,6 @@
 4.1: Intro to MQTT
 Files: (1) client1.py (2) client2.py (both are modified from publisher_original.py and subscriber_original.py)
+client1 publishes and client2 subscribes... Messages are pingpong'ed back and forth indefinitely until the user presses CTRL+C or closes the IDE/terminal
 Q1: Consider how to use MQTT for the project. Based on your experiences, what is made possible using MQTT? 
 A: Using MQTT, communication is made possible between at least 2 communication channels. 
 Q2: What seems fairly difficult using MQTT? 

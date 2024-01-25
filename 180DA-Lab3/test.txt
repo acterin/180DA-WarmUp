@@ -1,0 +1,5 @@
+2 different services 
+player 1 
+
+variable = none
+on message = move
