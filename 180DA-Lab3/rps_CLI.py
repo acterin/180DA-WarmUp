@@ -42,6 +42,5 @@ class RPSBot:
                 self.print_scores()
                 break
 
-if __name__ == "__main__":
-    rps_bot = RPSBot()
-    rps_bot.run_game()
+rps_bot = RPSBot()
+rps_bot.run_game()

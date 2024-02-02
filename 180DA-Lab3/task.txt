@@ -1,0 +1,7 @@
+6 Task
+1. Please submit a screenshot of you playing your command-line game and your PyGame game with
+another person.
+2. Try reading a bit on one other GUI library. Sometimes you don’t need a full game loop interface to
+implement the games that we are working on, so you can try an easier (or more flexible) interface.
+3. Describe in a short blurb how you think you want to do graphics for your project.
+4. As always, please remember to submit all new code into your public ECE180D-Warmup repository.
