@@ -1,0 +1,40 @@
+Task
+1. Please submit a screenshot of you playing your command-line game and your PyGame game with
+another person.
+
+1A: 
+Two programs were opened side by side for both CLI and Pygame.
+
+CLI:
+See "RPS_CLI.png"
+CLI Files:
+rps_2p_CLI_MQTT_p1.py
+rps_2p_CLI_MQTT_p2.py
+
+PyGame:
+See "RPS_PyGame.png"
+PyGame Files:
+rps_2p_PyGame_MQTT_p1.py
+rps_2p_PyGame_MQTT_p2.py
+
+
+2. Try reading a bit on one other GUI library. Sometimes you don’t need a full game loop interface to
+implement the games that we are working on, so you can try an easier (or more flexible) interface.
+
+2A: 
+I tried Tkinter, and it is much more simpler to work with. 
+However, for my Reverse-a-Bomb game, it isn't ideal due to limited graphics capability. 
+Tkinter is great for making simple stuff that depend on buttons and simple colors, including RPS. 
+If I wanted, I could have made an 2p RPS game over MQTT with Tkinter. 
+It may have been much easier, and I wanted more practice with PyGame.
+PyGame is ideal for making games with heavier graphics, e.g. my Reverse-a-Bomb project.
+
+
+3. Describe in a short blurb how you think you want to do graphics for your project.
+
+3A: For my Mario Party Reverse-a-Bomb game, I would want to have simple shapes represent LED lights which are fictitious bombs.
+I can have another color such as green or pink with simple shapes to represent the players. 
+If we accomplish this earlier in the quarter, we can perhaps advance to more complex shapes by introducing 3D forms.
+
+4. As always, please remember to submit all new code into your public ECE180D-Warmup repository.
+4A: Done!
